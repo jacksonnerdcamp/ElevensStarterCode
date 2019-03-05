@@ -1,8 +1,7 @@
-package Activity2;
-
 /**
  * Created by Teacher on 1/7/2019.
  */
+package Activity2;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -35,7 +34,16 @@ public class Deck {
      * @param values is an array containing all of the card point values.
      */
     public Deck(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        /* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        this.cards = new ArrayList<Card>();
+        for(int suitsCounter = 0; suitsCounter < suits.length; suitsCounter++)
+        {
+            for (int i = 0; i < ranks.length; i++)
+            {
+                cards.add(new Card(ranks[i], suits[suitsCounter], values[i]));
+            }
+        }
+        this.size = ranks.length * suits.length;
     }
 
 
@@ -44,7 +52,8 @@ public class Deck {
      * @return true if this deck is empty, false otherwise.
      */
     public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        /* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        return this.size() == 0;
     }
 
     /**
@@ -52,7 +61,8 @@ public class Deck {
      * @return the number of undealt cards in this deck.
      */
     public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        /* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        return this.size;
     }
 
     /**
@@ -60,7 +70,16 @@ public class Deck {
      * and reset the size to represent the entire deck.
      */
     public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+        /* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+        int card2;
+        Card tempCard;
+        for(int n = 0; n < size; n++)
+        {
+            card2 = (int)(Math.random() * (size - 1) + 1);
+            tempCard = cards.get(card2);
+            cards.set(card2, cards.get(n));
+            cards.set(n, tempCard);
+        }
     }
 
     /**
@@ -69,7 +88,12 @@ public class Deck {
      *         previously dealt.
      */
     public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        /* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        if(!this.isEmpty()) {
+            this.size--;
+            return cards.get(size);
+        }
+        return null;
     }
 
     /**
@@ -107,4 +131,3 @@ public class Deck {
         return rtn;
     }
 }
-
