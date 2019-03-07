@@ -56,6 +56,29 @@ public class ElevensBoard extends Board {
     @Override
     public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        String[] jackQueenKing = new String[3];
+        jackQueenKing[0] = "jack";
+        jackQueenKing[1] = "queen";
+        jackQueenKing[2] = "king";
+        if(cardAt(selectedCards.get(0)).pointValue() + cardAt(selectedCards.get(1)).pointValue() == 11)
+        {
+            return true;
+        }
+        for(int i = 0; i < selectedCards.size(); i++)
+        {
+            for(int j = 0; j < jackQueenKing.length; j++)
+            {
+                if(cardAt(selectedCards.get(i)).suit().equals(jackQueenKing[j]))
+                {
+                    jackQueenKing[j] = null;
+                }
+            }
+        }
+        if(jackQueenKing[0] == null && jackQueenKing[1] == null && jackQueenKing[2] == null)
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -93,5 +116,24 @@ public class ElevensBoard extends Board {
      */
     private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        String[] jackQueenKing = new String[3];
+        jackQueenKing[0] = "jack";
+        jackQueenKing[1] = "queen";
+        jackQueenKing[2] = "king";
+        if(cardAt(selectedCards.get(0)).pointValue() + cardAt(selectedCards.get(1)).pointValue() == 11)
+        {
+            return true;
+        }
+        for(int i = 0; i < selectedCards.size(); i++)
+        {
+            for(int j = 0; j < jackQueenKing.length; j++)
+            {
+                if(cardAt(selectedCards.get(i)).suit().equals(jackQueenKing[j]))
+                {
+                    jackQueenKing[j] = null;
+                }
+            }
+        }
+        return jackQueenKing[0] == null && jackQueenKing[1] == null && jackQueenKing[2] == null;
     }
 }
