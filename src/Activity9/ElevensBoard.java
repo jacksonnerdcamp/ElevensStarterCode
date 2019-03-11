@@ -70,6 +70,10 @@ public class ElevensBoard extends Board {
     @Override
     public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        if(containsJQK(cardIndexes()) || containsPairSum11(cardIndexes()))
+        {
+            return true;
+        }
         return false;
     }
 
@@ -114,7 +118,7 @@ public class ElevensBoard extends Board {
         {
             for(int j = 0; j < jackQueenKing.length; j++)
             {
-                if(cardAt(selectedCards.get(i)).suit().equals(jackQueenKing[j]))
+                if(cardAt(selectedCards.get(i)).rank().equals(jackQueenKing[j]))
                 {
                     jackQueenKing[j] = null;
                 }
